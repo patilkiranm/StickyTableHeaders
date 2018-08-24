@@ -1,6 +1,6 @@
 StickyTableHeaders
 ==================
-So what's it good for? Well, let's say you want to display a long list of fairly uniform tabluar data, like [stock exchange listings](http://online.barrons.com/public/page/majormarket-nysecomposite-A.html) or [sport statistics](http://sports.yahoo.com/nba/stats/byposition?pos=PG,SG,G,GF,SF,PF,F,FC,C) but you don't want your users to get lost in the data as they scroll down on the page.
+So what's it good for? Well, let's say you want to display a long list of fairly uniform tabluar data, like [stock exchange listings](http://online.barrons.com/public/page/majormarket-nysecomposite-A.html) or [sport statistics](https://sports.yahoo.com/nfl/stats/weekly/?sortStatId=PASSING_YARDS&selectedTable=7) but you don't want your users to get lost in the data as they scroll down on the page.
 
 StickyTableHeaders to the rescue: By applying the StickyTableHeaders jQuery plugin to the table, the column headers will stick to the top of the viewport as you scroll down.
 
@@ -10,7 +10,7 @@ The code is based on [this proof of concept](http://stackoverflow.com/questions/
 
 Installation
 ------------
-The best way to install is using [npm](https://www.npmjs.com/);
+The best way to install is using [npm](https://www.npmjs.com/):
 
 ```bash
 npm install sticky-table-headers
@@ -22,7 +22,11 @@ or [Bower](http://bower.io/):
 bower install StickyTableHeaders
 ```
 
-Alternatively, you can download the latest version from [jquery.stickytableheaders.min.js](https://raw.github.com/jmosbech/StickyTableHeaders/master/js/jquery.stickytableheaders.min.js).
+or by loading it directly from the [unpkg CDN](https://unpkg.com/sticky-table-headers):
+
+```
+<script src="https://unpkg.com/sticky-table-headers"></script>
+```
 
 Usage
 -----
@@ -55,7 +59,7 @@ $('table').stickyTableHeaders({fixedOffset: $('#header')});
 ```
 
 #### `scrollableArea`
-A DOM element or jQuery object. Allows you to overwrite which surrounding element is scrolling. Defaults to `window`. [Check this demo for an example](https://github.com/jmosbech/StickyTableHeaders/tree/master/demo/scrollable-div.html):
+A DOM element or jQuery object. Allows you to overwrite which surrounding element is scrolling. Defaults to `window`. [Check this demo for an example](/demo/scrollable-div.html):
 
 ```js
 $('table').stickyTableHeaders({scrollableArea: $('.scrollable-area')});
@@ -68,6 +72,13 @@ Default value: `false`
 
 ```js
 $('table').stickyTableHeaders({cacheHeaderHeight: true});
+```
+
+#### z-index
+The plugin uses z-index to make the thead overlay the body. You can override the z-index value by passing in a `zIndex` option:
+
+```js
+$('table').stickyTableHeaders({zIndex: 999});
 ```
 
 ### Reinitialize
@@ -87,7 +98,7 @@ The plugin triggers the following events on the targeted `<table>` element:
 Confused?
 ---------
 
-If any of this is confusing, please check out the [/demo](https://github.com/jmosbech/StickyTableHeaders/tree/master/demo) folder. There are a couple of examples in there. E.g. you can see how to use it with Twitter Bootstrap.
+If any of this is confusing, please check out the [/demo](/demo) folder. There are a couple of examples in there. E.g. you can see how to use it with Twitter Bootstrap.
 
 Known Issues
 ------------

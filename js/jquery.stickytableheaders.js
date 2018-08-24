@@ -1,4 +1,4 @@
-/*! Copyright (c) 2011 by Jonas Mosbech - https://github.com/jmosbech/StickyTableHeaders
+/*! Copyright (c) Jonas Mosbech - https://github.com/jmosbech/StickyTableHeaders
 	MIT license info: https://github.com/jmosbech/StickyTableHeaders/blob/master/license.txt */
 
 ;(function ($, window, undefined) {
@@ -71,6 +71,8 @@
 					'</style>');
 				base.$head.append(base.$printStyle);
 			});
+			
+			base.$clonedHeader.find("input, select").attr("disabled", true);
 
 			base.updateWidth();
 			base.toggleHeaders();
@@ -153,13 +155,18 @@
 						scrollTop = base.$scrollableArea.scrollTop() + newTopOffset,
 						scrollLeft = base.$scrollableArea.scrollLeft(),
 
-						headerHeight = base.options.cacheHeaderHeight ? base.cachedHeaderHeight : base.$clonedHeader.height(),
+						headerHeight,
 
 						scrolledPastTop = base.isWindowScrolling ?
 								scrollTop > offset.top :
 								newTopOffset > offset.top,
+						notScrolledPastBottom;
+
+					if (scrolledPastTop) {
+						headerHeight = base.options.cacheHeaderHeight ? base.cachedHeaderHeight : base.$clonedHeader.height();
 						notScrolledPastBottom = (base.isWindowScrolling ? scrollTop : 0) <
 							(offset.top + $this.height() - headerHeight - (base.isWindowScrolling ? 0 : newTopOffset));
+					}
 
 					if (scrolledPastTop && notScrolledPastBottom) {
 						newLeft = offset.left - scrollLeft + base.options.leftOffset;
@@ -168,7 +175,7 @@
 							'margin-top': base.options.marginTop,
 							'top': newTopOffset,
 							'left': newLeft,
-							'z-index': base.options.zIndex // #18: opacity bug
+							'z-index': base.options.zIndex
 						});
 						base.leftOffset = newLeft;
 						base.topOffset = newTopOffset;
