@@ -84,8 +84,15 @@
 
 		base.teardown = function(){
 			if (base.isSticky) {
-				base.$originalHeader.css('position', 'static');
+				base.$originalHeader.css({
+					'position': 'static', 'margin-top': '',
+					'top': '', 'left': '', 'z-index': ''
+				});
+				base.$clonedHeader.css('display', 'none');
+				base.isSticky = false;
+				base.resetWidth($('td,th', base.$clonedHeader), $('td,th', base.$originalHeader));
 			}
+
 			$.removeData(base.el, 'plugin_' + name);
 			base.unbind();
 
